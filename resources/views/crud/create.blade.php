@@ -3,9 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Create New Entry</div>
                     <div class="panel-body">
@@ -22,7 +20,6 @@
                         @endif
 
                         {!! Form::open(['url' => '/crud', 'class' => 'form-horizontal', 'files' => true]) !!}
-                        {!! Form::token() !!}
                         
                         @include ('crud.form')
 

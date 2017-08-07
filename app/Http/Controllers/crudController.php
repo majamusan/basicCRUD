@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace basicCRUD\Http\Controllers;
 
-use Illuminate\Http\Request, App\CRUD, Session;
+use Illuminate\Http\Request, basicCRUD\CRUD, Session;
 
 class crudController extends Controller
 {
@@ -46,10 +46,16 @@ class crudController extends Controller
     	'aze'=>'Azerbaijani',
     	'bad'=>'Banda languages'
 	];
+
     private $interestOptions = [
         'Outdoor' => ['swimming' => 'Swimming','walking'=>'Walking'],
         'Indoor' => ['painting' => 'Painting','programming'=>'Programming'],
     ];
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -85,7 +91,11 @@ class crudController extends Controller
      */
     public function create()
     {
-        return view('crud.create',['interestOptions'=>$this->interestOptions,'languageOptions'=>$this->languageOptions]);
+        return view('crud.create',[
+            'crud'=>(object)['language'=>'','interests'=>''],
+            'interestOptions'=>$this->interestOptions,
+            'languageOptions'=>$this->languageOptions
+            ]);
     }
 
     /**
